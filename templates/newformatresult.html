@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Server Status</title>
+    <style>
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        height: 100%;
+      }
+
+      body {
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        margin: 0;
+        background-color: #f2f2f2; /* Set background color */
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-around; /* Adjust as needed */
+        margin-bottom: 40px; /* Adjust spacing between rows */
+      }
+
+      .circle {
+        width: 100px; /* Set circle size */
+        height: 100px; /* Set circle size */
+        border-radius: 50%;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Add shadow */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px; /* Set font size */
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .green {
+        box-shadow:
+        0 0 20px #05F410,
+        -20px 0 80px #05F410,
+        20px 0 80px #64FF00,
+        inset 0 0 50px #EAFF9A,
+        inset 50px 0 80px #6FEA1F,
+        inset -50px 0 80px #EAFF9A,
+        inset 50px 0 300px #6FEA1F,
+        inset -50px 0 300px #EAFF9A;
+      animation: pulsate 6s linear infinite;
+      margin: 10px; /* Add margin to create gap between circles */
+
+      }
+
+      @keyframes pulsate-green{
+        50% {
+          box-shadow:
+            0 0 20px #FF0909,
+            20px 0 80px #FF0909,
+            -20px 0 80px #D63737,
+            inset 0 0 50px #6FEA1F,
+            inset -50px 0 80px #6FEA1F,
+            inset 50px 0 80px #D63737,
+            inset -50px 0 300px #6FEA1F,
+            inset 50px 0 300px #D63737;
+        }
+      }
+
+
+      .red {
+        box-shadow:
+        0 0 20px #FF0909,
+        -20px 0 80px #FF0909,
+        20px 0 80px #D63737,
+        inset 0 0 50px #EAFF9A,
+        inset 50px 0 80px #D63737,
+        inset -50px 0 80px #EAFF9A,
+        inset 50px 0 300px #6FEA1F,
+        inset -50px 0 300px #EAFF9A;
+      animation: pulsate 6s linear infinite;
+      margin: 10px; /* Add margin to create gap between circles */
+      }
+    </style>
+  </head>
+  <body>
+    {% for status in server_status %}
+    <div class="circle {% if status == 'Normal' %}green{% else %}red{% endif %}">{{ status }}</div>
+    {% endfor %}
+  </body>
+</html>
